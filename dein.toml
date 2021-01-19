@@ -1,0 +1,109 @@
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+on_i = 1
+merged = '0'
+hook_source = 'call coil398#init#coc#hook_source()'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+
+[[plugins]]
+repo = 'honza/vim-snippets'
+
+[[plugins]]
+repo = 'thomasfaingnaert/vim-lsp-snippets'
+
+[[plugins]]
+repo = 'thomasfaingnaert/vim-lsp-ultisnips'
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip-integ'
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+
+[[plugins]]
+repo = 'Shougo/echodoc.vim'
+
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+depends = 'async.vim'
+hook_add = '''
+augroup ProjectLSP
+  autocmd!
+  let s:pyls_path = fnamemodify(g:project_python_path, ':h') . '/'. 'pyls'
+  if executable('pyls')
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': { server_info -> [expand(s:pyls_path)] },
+        \ 'whitelist': ['python3']
+        \})
+  endif
+augroup END
+
+function! s:configure_lsp() abort
+  setlocal omnifunc=lsp#complete
+  nnoremap <buffer> <C-]> :<C-u>LspDefinition<CR>
+  nnoremap <buffer> gd :<C-u>LspDefinition<CR>
+  nnoremap <buffer> gD :<C-u>LspReferences<CR>
+  nnoremap <buffer> gs :<C-u>LspDocumentSymbol<CR>
+  nnoremap <buffer> gS :<C-u>LspWorkspaceSymbol<CR>
+  nnoremap <buffer> gQ :<C-u>LspDocumentFormat<CR>
+  vnoremap <buffer> gQ :LspDocumentRangeFormat<CR>
+  nnoremap <buffer> K :<C-u>LspHover<CR>
+  nnoremap <buffer> <F1> :<C-u>LspImplementation<CR>
+  nnoremap <buffer> <F2> :<C-u>LspRename<CR>
+endfunction
+
+augroup LaunchPyls
+    autocmd!
+    autocmd BufWinEnter *.py :call lsp#enable()
+augroup END
+
+augroup PylsCommands
+    autocmd!
+    autocmd BufWinEnter *.py :call lsp#enable()
+    " local key mapping
+    autocmd FileType python nnoremap <C-]> :<C-u>LspDefinition<CR>
+    autocmd FileType python nnoremap K :<C-u>LspHover<CR>
+    autocmd FileType python nnoremap <LocalLeader>R :<C-u>LspRename<CR>
+    autocmd FileType python nnoremap <LocalLeader>n :<C-u>LspReferences<CR>
+augroup END
+
+let g:lsp_diagnostics_enabled = 0
+'''
+
+[[plugins]]
+repo = 'fisadev/vim-isort'
+on_ft = ['python']
+
+[[plugins]]
+repo = 'python/black'
+on_ft = ['python']
+
+[[plugins]]
+repo = 'nvie/vim-flake8'
+on_ft = ['python3']
+hook_source = '''
+    let g:flake8_show_in_gutter=1
+    let g:flake8_show_in_file=1
+    let s:flake8_path = fnamemodify(g:project_python_path, ':h') . '/'. 'flake8'
+    let g:flake8_cmd = expand(s:flake8_path) . " --config " . expand(g:project_flake8_config)
+'''
