@@ -107,3 +107,9 @@ hook_source = '''
     let s:flake8_path = fnamemodify(g:project_python_path, ':h') . '/'. 'flake8'
     let g:flake8_cmd = expand(s:flake8_path) . " --config " . expand(g:project_flake8_config)
 '''
+
+[[plugins]]
+repo = 'tomasr/molokai'
+
+[[plugins]]
+repo = 'cohama/lexima.vim'

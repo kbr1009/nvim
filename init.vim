@@ -36,17 +36,6 @@ endif
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 cnoremap init :<C-u>edit $MYVIMRC<CR>                           " init.vim呼び出し
 noremap <Space>s :source $MYVIMRC<CR>                           " init.vim読み込み
 noremap <Space>w :<C-u>w<CR>                                    " ファイル保存
@@ -63,14 +52,14 @@ inoremap <C-j> <Down>
 
 set encoding=utf-8
 " edita setting
-set number                                                      " 行番号表示
+"set number                                                      " 行番号表示
 set splitbelow                                                  " 水平分割時に下に表示
 set splitright                                                  " 縦分割時を右に表示
 "set noequalalways                                               " 分割時に自動調整を無効化
 set wildmenu                                                    " コマンドモードの補完
 " cursorl setting
 set ruler                                                       " カーソルの位置表示
-set cursorline                                                  " カーソルハイライト
+"set cursorline                                                  " カーソルハイライト
 " tab setting
 set expandtab                                                   " tabを複数のspaceに置き換え
 set tabstop=2                                                   " tabは半角2文字
@@ -82,7 +71,7 @@ set clipboard+=unnamed
 
 
 " タブページを常に表示
-"set showtabline=2
+set showtabline=2
 "vimのタブページのキーインバインド
 nmap <Tab>      gt
 nmap <S-Tab>    gT
@@ -114,3 +103,23 @@ set history=5000 " 保存するコマンド履歴の数
 
 set laststatus=0
 set noshowmode
+
+colorscheme molokai
+
+if !has('gui_running') && $TMUX !=# ''
+    augroup Tmux
+        autocmd!
+        autocmd VimEnter,VimLeave * silent !tmux set status
+    augroup END
+endif
+
+inoremap { {}<LEFT>
+inoremap [ []<LEFT>
+inoremap ( ()<LEFT>
+inoremap " ""<LEFT>
+inoremap ' ''<LEFT>
+vnoremap { "zdi^V{<C-R>z}<ESC>
+vnoremap [ "zdi^V[<C-R>z]<ESC>
+vnoremap ( "zdi^V(<C-R>z)<ESC>
+vnoremap " "zdi^V"<C-R>z^V"<ESC>
+vnoremap ' "zdi'<C-R>z'<ESC>
