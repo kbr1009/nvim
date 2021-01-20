@@ -76,7 +76,6 @@ set showtabline=2
 nmap <Tab>      gt
 nmap <S-Tab>    gT
 
-
 if has('vim_starting')
     " 挿入モード時に非点滅の縦棒タイプのカーソル
     let &t_SI .= "\e[6 q"
@@ -106,8 +105,6 @@ set noshowmode
 
 set t_Co=256
 colorscheme molokai
-
-
 
 
 if !has('gui_running') && $TMUX !=# ''
