@@ -104,7 +104,11 @@ set history=5000 " 保存するコマンド履歴の数
 set laststatus=0
 set noshowmode
 
+set t_Co=256
 colorscheme molokai
+
+
+
 
 if !has('gui_running') && $TMUX !=# ''
     augroup Tmux
