@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/Users/reokobayashi/山和食品/Project_src/todoapp_config/front'
+let g:netrw_dirhist_5='/Users/reokobayashi/山和食品/Project_src/todoapp_config'
+let g:netrw_dirhist_4='/Users/reokobayashi/山和食品/Project_src/yamawa_manual2'
 let g:netrw_dirhist_3='/Users/reokobayashi/Jupyter/work/研究/peak/PeakEstimation/ver2/src'
 let g:netrw_dirhist_2='/Users/reokobayashi/golang_src/InventoryControl_api/controllers'
 let g:netrw_dirhist_1='/Users/reokobayashi/.tmux/tmux-powerline/themes'

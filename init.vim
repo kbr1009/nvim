@@ -26,7 +26,8 @@ endif
 
 " Required:
 filetype plugin indent on
-syntax enable
+"syntax enable
+syntax on
 
 if dein#check_install()
   call dein#install()
@@ -105,7 +106,11 @@ set noshowmode
 
 set t_Co=256
 colorscheme molokai
-
+hi Normal guibg=NONE
+hi LineNr guibg=NONE
+hi VertSplit guibg=NONE
+hi Special guibg=NONE
+hi Identifier guibg=NONE
 
 if !has('gui_running') && $TMUX !=# ''
     augroup Tmux
